@@ -10,7 +10,15 @@ Route::post('/post', function (Request $request) {
         'website_url' => 'required'
     ]);
 
+    // ensure that the subscription is not a duplicate
+
     // queue_email_to_subsribers
+    $exitCode = Artisan::call('app:send-email-to-subscribers', [
+        'website_url' => $validatedData['website_url'],
+        'title' => $validatedData['title'],
+        'description' => $validatedData['description'],
+        '--queue' => 'default'
+    ]);
 });
 
 Route::post('/subscription', function (Request $request) {
@@ -20,6 +28,6 @@ Route::post('/subscription', function (Request $request) {
         'website_url'      => 'required'
     ]);
 
-    // subsribe_user
-
+    // subscribe_user
+    Subscriber::
 });
