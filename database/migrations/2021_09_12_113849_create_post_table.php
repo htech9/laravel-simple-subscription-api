@@ -17,7 +17,10 @@ class CreatePostTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
+            $table->unsignedBigInteger('website_id');
             $table->timestamps();
+
+            $table->foreign('website_id')->references('id')->on('website');
         });
     }
 

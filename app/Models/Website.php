@@ -1,24 +1,24 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property integer $id
- * @property string $title
- * @property string $description
+ * @property string $base_url
  * @property string $created_at
  * @property string $updated_at
+ * @property Subscriber[] $subscribers
  */
-class Post extends Model
+class Website extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'post';
+    protected $table = 'website';
 
     /**
      * The "type" of the auto-incrementing ID.
@@ -30,6 +30,13 @@ class Post extends Model
     /**
      * @var array
      */
-    protected $fillable = ['title', 'description', 'created_at', 'updated_at'];
+    protected $fillable = ['base_url', 'created_at', 'updated_at'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function subscribers()
+    {
+        return $this->hasMany('App\Subscriber');
+    }
 }
