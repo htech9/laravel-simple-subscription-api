@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubscriberTable extends Migration
+class CreatePublicationNotifsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateSubscriberTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscriber', function (Blueprint $table) {
+        Schema::create('publication_notifs', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
-            $table->unsignedBigInteger('website_id');
+            $table->foreignId('post_id');
+            $table->foreignId('subscription_id');
             $table->timestamps();
 
-            $table->foreign('website_id')->references('id')->on('website');
-            $table->index(['email', 'website_id']);
+            $table->unique(['post_id', 'subscription_id']);
+            $table->index(['post_id', 'subscription_id']);
         });
     }
 
@@ -31,6 +31,6 @@ class CreateSubscriberTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscriber');
+        Schema::dropIfExists('publication_notifs');
     }
 }
