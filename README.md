@@ -7,6 +7,8 @@ The following tools / packages are required to be installed:
 php , composer, docker
 
 ### How to run
+- create .env file were you can inspire values from .env.example file.
+- run `composer install` 
 - run `docker-compose up`
 - run `php artisan serve`
 
