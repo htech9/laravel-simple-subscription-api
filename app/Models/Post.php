@@ -11,6 +11,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['website', 'title', 'content', 'authors'];
+
     public static function boot() {
         parent::boot();
 

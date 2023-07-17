@@ -49,19 +49,6 @@ class PostController extends Controller
         $post->content = $validParams['content'];
         $post->author  = $validParams['author'];
         $post->save();
-    
-        // // get subscribers
-        // $subscribers = Subscriber::where('website', $website)->get();
-    
-        // // queue_email_to_subsribers
-        // foreach ($subscribers as $subscriber) {
-        //     Artisan::call('app:send-email-to-subscribers', [
-        //         'website_url' => $subscriber->website->url,
-        //         'title'       => $post->title,
-        //         'description' => $post->description,
-        //         '--queue'     => 'default'
-        //     ]);
-        // }
     }
 
     /**

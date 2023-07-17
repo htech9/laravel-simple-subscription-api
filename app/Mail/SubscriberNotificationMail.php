@@ -3,13 +3,14 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 class SubscriberNotificationMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    private $details;
 
     /**
      * Create a new message instance.
@@ -28,7 +29,7 @@ class SubscriberNotificationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('New post have been published on ' . $details['website_url'])
-                    ->view('emails.newPostNotification');
+        return $this->subject('New post have been published on ' . $this->details['website_url'])
+                    ->view('emails.newPostNotification', ['details' => $this->details]);
     }
 }
